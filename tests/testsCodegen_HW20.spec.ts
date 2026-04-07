@@ -15,7 +15,7 @@ test.describe('test playwright with codegen', async () => {
     await page.locator('[data-test="password"]').fill('secret_sauce');
     await page.locator('[data-test="login-button"]').click();
     await expect(page.locator('[data-test="inventory-container"]')).toBeVisible();
-    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();//
     await expect(page.locator('[data-test="remove-sauce-labs-backpack"]')).toContainText('Remove');
     await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
   });
