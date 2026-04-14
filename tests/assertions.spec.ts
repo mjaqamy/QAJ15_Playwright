@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { inventoryPageSlectors, loginPageSlectors } from './helpers/selectors';
 import { loginAsNotStandartUser, loginAsStandartUser } from './helpers/auth';
+import { checkProductsExist } from './helpers/custom-asserts'
 
 test.describe('test playwright assert', async () => {
   test('6 products on inventory page (GenericAssertions)', async ({ page }) => {
@@ -37,4 +38,8 @@ test.describe('test playwright assert', async () => {
     const titlePage = await page.title();
     expect(titlePage).toEqual('Swag Labs');
   });
+  test('custom assertion: products exist', async ({ page }) => {
+  await loginAsStandartUser(page);
+  await checkProductsExist(page);
+});
 });
