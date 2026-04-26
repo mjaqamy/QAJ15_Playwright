@@ -1,0 +1,53 @@
+import { test, expect } from '@playwright/test';
+
+// Task9: Для сайта https://the-internet.herokuapp.com/tables
+// 1. Создать скрипт на получение заголовка сайта (title) 
+// 2. Запустить скрипт через page.evaluate()
+// 3. Проверить что полученные title совпадает с ожидаемым
+// 4. (опционально, сложная задача) Создать функцию которая будет принимать в себя число 1 или 2
+//     На выходе функция должна собирать данные из соответствующей таблицы (Example 1 или Example 2)
+//     Выходные данные должны иметь вид массива (порядок свойств объектов не важен, порядок объектов в массиве - соответствует порядку строк в таблице)
+// [
+//   {
+//     "Last Name": "Smith",
+//     "First Name": "John",
+//     "Email": "jsmith@gmail.com",
+//     "Due": "$50.00",
+//     "Web Site": "http://www.jsmith.com",
+//     "Action": "edit delete"
+//   },
+//   {
+//     "Last Name": "Bach",
+//     "First Name": "Frank",
+//     "Email": "fbach@yahoo.com",
+//     "Due": "$51.00",
+//     "Web Site": "http://www.frank.com",
+//     "Action": "edit delete"
+//   },
+//   {
+//     "Last Name": "Doe",
+//     "First Name": "Jason",
+//     "Email": "jdoe@hotmail.com",
+//     "Due": "$100.00",
+//     "Web Site": "http://www.jdoe.com",
+//     "Action": "edit delete"
+//   },
+//   {
+//     "Last Name": "Conway",
+//     "First Name": "Tim",
+//     "Email": "tconway@earthlink.net",
+//     "Due": "$50.00",
+//     "Web Site": "http://www.timconway.com",
+//     "Action": "edit delete"
+//   }
+// ]
+
+
+test('task9 ', async ({ page }) => {
+  await page.goto('https://the-internet.herokuapp.com/tables');
+  //https://playwright.help/docs/evaluating#different-environments
+  const title = await page.evaluate(() => {
+    return document.title;
+  });
+  expect(title).toBe('The Internet');
+});
