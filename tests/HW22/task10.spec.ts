@@ -7,12 +7,17 @@ import { test, expect } from '@playwright/test';
 // 4. (опционально, сложная задача) Сделать возможным редактировать текст в форме.
 //    Дописать свое имя в форму и проверить что форма была модифицирована
 
-test('task10 ', async ({ page }) => {
+test.only('task10 ', async ({ page }) => {
   await page.goto('https://the-internet.herokuapp.com/iframe');
-  await expect(page.getByText('File')).toBeEnabled();
-  await expect(page.locator('.tox-mbtn__select-label').getByText('Edit')).toBeEnabled();
-  await expect(page.getByText('View')).toBeEnabled();
-  await expect(page.getByText('Format')).toBeEnabled();
+  const menuItems = ['File', 'Edit', 'View', 'Format'];
+
+  for (const item of menuItems) {
+    await expect(page.getByText(item)).toBeVisible();
+  }
+  // await expect(page.getByText('File')).toBeEnabled();
+  // await expect(page.locator('.tox-mbtn__select-label').getByText('Edit')).toBeEnabled();
+  // await expect(page.getByText('View')).toBeEnabled();
+  // await expect(page.getByText('Format')).toBeEnabled();
   await page.locator('iframe[title="Rich Text Area"]').contentFrame().getByText('Your content goes here.').click();
   await page.locator('iframe[title="Rich Text Area"]').contentFrame().getByLabel('Rich Text Area. Press ALT-0').fill('Yuliya');
   expect(page.locator('iframe[title="Rich Text Area"]').contentFrame().getByText('Yuliya'));
