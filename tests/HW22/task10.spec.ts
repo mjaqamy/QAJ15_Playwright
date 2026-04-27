@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 // 4. (опционально, сложная задача) Сделать возможным редактировать текст в форме.
 //    Дописать свое имя в форму и проверить что форма была модифицирована
 
-test.only('task10 ', async ({ page }) => {
+test('task10 ', async ({ page }) => {
   await page.goto('https://the-internet.herokuapp.com/iframe');
   const menuItems = ['File', 'Edit', 'View', 'Format'];
 
