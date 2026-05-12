@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 
 /**
  * Read environment variables from file.
@@ -38,18 +38,26 @@ export default defineConfig({
   timeout: 20_000,
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
+      name: 'setup-standard',
+      testMatch: 'global-setup.ts'
+    },
+
+    {
+      name: 'standard-tests',
+      testMatch: 'standard-tests.spec.ts',
+      dependencies: ['setup-standard'],
+      use: {
+        storageState: 'standard-user-state.json'
+      }
+    },
+    {
+      name: 'fixture-tests',
+      testMatch: 'fixture-tests.spec.ts'
     }
 
     // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] }
     // },
 
     /* Test against mobile viewports. */
