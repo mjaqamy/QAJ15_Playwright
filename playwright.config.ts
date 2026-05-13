@@ -53,6 +53,14 @@ export default defineConfig({
     {
       name: 'fixture-tests',
       testMatch: 'fixture-tests.spec.ts'
+    },
+    {
+      name: 'api-tests',
+      testMatch: 'api-tests.spec.ts'
+    },
+    {
+      name: 'hw24tests',
+      testMatch: 'hw24test.spec.ts'
     }
 
     // {
