@@ -13,7 +13,8 @@ test.describe('hw24', () => {
     await page.route('**/mocks', route => {
       route.fulfill({
         status: 500,
-        body: 'Server error'
+        contentType: 'application/json',
+        body: JSON.stringify({ message: 'Server error' }),
       });
     });
     await page.goto(baseUrl);
